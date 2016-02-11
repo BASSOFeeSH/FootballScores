@@ -24,6 +24,7 @@ public class PagerFragment extends Fragment
     public ViewPager mPagerHandler;
     private myPageAdapter mPagerAdapter;
     private MainScreenFragment[] viewFragments = new MainScreenFragment[5];
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
