@@ -38,4 +38,11 @@
     <string name="widget_title">Widget Title</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string-array name="string_array_test">
+        <item>score1</item>
+        <item>score2</item>
+        <item>score3</item>
+        <item>score4</item>
+        <item>score5</item>
+    </string-array>
 </resources>
