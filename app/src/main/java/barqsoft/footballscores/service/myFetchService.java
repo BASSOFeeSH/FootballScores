@@ -39,6 +39,7 @@ public class myFetchService extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
+        Log.d(LOG_TAG, "onHandleIntent");
         getData("n2");
         getData("p2");
 
@@ -47,6 +48,7 @@ public class myFetchService extends IntentService
 
     private void getData (String timeFrame)
     {
+        Log.d(LOG_TAG, "getData " + timeFrame);
         //Creating fetch URL
         final String BASE_URL = "http://api.football-data.org/alpha/fixtures"; //Base URL
         final String QUERY_TIME_FRAME = "timeFrame"; //Time Frame parameter to determine days
@@ -133,6 +135,7 @@ public class myFetchService extends IntentService
     }
     private void processJSONdata (String JSONdata,Context mContext, boolean isReal)
     {
+        Log.d(LOG_TAG, "processJSONdata");
         //JSON data
         // This set of league codes is for the 2015/2016 season. In fall of 2016, they will need to
         // be updated. Feel free to use the codes
