@@ -61,7 +61,7 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
     {
         Log.d(LOG_TAG, "setFragmentDate");
 
-        int i = -1;
+        int i = Integer.parseInt(ctxt.getString(R.string.widget_day_offset));
         Date fragmentdate = new Date(System.currentTimeMillis()+((i)*86400000));
         SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
         this.fragmentdate[0] = mformat.format(fragmentdate);
