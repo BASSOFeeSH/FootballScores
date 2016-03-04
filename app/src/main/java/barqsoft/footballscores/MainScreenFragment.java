@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,24 +26,33 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     private String[] fragmentdate = new String[1];
     private int last_selected_item = -1;
 
+    public static String LOG_TAG = "MainScreenFragment";
+
     public MainScreenFragment()
     {
+        Log.d(LOG_TAG, "Constructor");
     }
 
     private void update_scores()
     {
+        Log.d(LOG_TAG, "update_scores");
+
         Intent service_start = new Intent(getActivity(), myFetchService.class);
         getActivity().startService(service_start);
     }
 
     public void setFragmentDate(String date)
     {
+        Log.d(LOG_TAG, "setFragment");
+
         fragmentdate[0] = date;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             final Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState)
+    {
+        Log.d(LOG_TAG, "onCreateView");
+
         update_scores();
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         final ListView score_list = (ListView) rootView.findViewById(R.id.scores_list);
@@ -67,6 +77,8 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle)
     {
+        Log.d(LOG_TAG, "onCreateLoader");
+
         return new CursorLoader(getActivity(),DatabaseContract.scores_table.buildScoreWithDate(),
                 null,null,fragmentdate,null);
     }
@@ -74,6 +86,8 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor)
     {
+        Log.d(LOG_TAG, "onLoadFinished");
+
         //Log.v(FetchScoreTask.LOG_TAG,"loader finished");
         //cursor.moveToFirst();
         /*
@@ -99,8 +113,8 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader)
     {
+        Log.d(LOG_TAG, "onLoaderReset");
+
         mAdapter.swapCursor(null);
     }
-
-
 }

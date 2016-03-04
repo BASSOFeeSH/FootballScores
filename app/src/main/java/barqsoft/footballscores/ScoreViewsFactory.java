@@ -1,6 +1,7 @@
 package barqsoft.footballscores;
 
 import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -11,8 +12,6 @@ import android.widget.RemoteViewsService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import barqsoft.footballscores.service.myFetchService;
 
 /**
  * Created by jim on 2/22/2016.
@@ -49,8 +48,8 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
         //
 //    private void update_scores()
 //    {
-        Intent service_start = new Intent(ctxt, myFetchService.class);
-        ctxt.startService(service_start);
+//        Intent service_start = new Intent(ctxt, myFetchService.class);
+//        ctxt.startService(service_start);
 //    }
 
 //        mAdapter = new scoresAdapter(ctxt,null,0);
@@ -203,6 +202,10 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
             mCursor.requery();
             Log.d(LOG_TAG, "onDataSetChanged requery");
         }
+        else
+        {
+            Log.d(LOG_TAG, "onDataSetChanged ..NULL");
+        }
     }
 
     @Override
@@ -216,7 +219,8 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
         else
             Log.d(LOG_TAG, "onLoadCompltete " + data.getCount());
 
-        if (data.isClosed()) {
+        if (data.isClosed())
+        {
             Log.d(LOG_TAG, "onLoadCompltete Got a closed cursor from onLoadComplete");
             return;
         }
@@ -229,10 +233,15 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
             return;
         }
 
-//        RemoteViews remoteViews = new RemoteViews(ctxt.getPackageName(), R.layout.app_widget);
-//        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(ctxt);
-//
-//
-//        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(ctxt);
+
+
+        int[] widgets = appWidgetManager.getAppWidgetIds(new ComponentName(ctxt, AppWidget.class));
+
+        for(int widget : widgets)
+        {
+            appWidgetManager.notifyAppWidgetViewDataChanged(widget, R.id.widget_scores_list);
+        }
+
     }
 }

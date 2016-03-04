@@ -34,6 +34,8 @@ public class myFetchService extends IntentService
     public myFetchService()
     {
         super("myFetchService");
+
+        Log.d(LOG_TAG, "Constructor");
     }
 
     @Override

@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,13 @@ public class PagerFragment extends Fragment
     public ViewPager mPagerHandler;
     private myPageAdapter mPagerAdapter;
     private MainScreenFragment[] viewFragments = new MainScreenFragment[5];
+    public static String LOG_TAG = "PagerFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
+        Log.d(LOG_TAG, "onCreateView");
+
         View rootView = inflater.inflate(R.layout.pager_fragment, container, false);
         mPagerHandler = (ViewPager) rootView.findViewById(R.id.pager);
         mPagerAdapter = new myPageAdapter(getChildFragmentManager());
@@ -47,26 +51,37 @@ public class PagerFragment extends Fragment
         @Override
         public Fragment getItem(int i)
         {
+            Log.d(LOG_TAG, "getItem");
+
             return viewFragments[i];
         }
 
         @Override
         public int getCount()
         {
+            Log.d(LOG_TAG, "getCount");
+
             return NUM_PAGES;
         }
 
         public myPageAdapter(FragmentManager fm)
         {
             super(fm);
+
+            Log.d(LOG_TAG, "myPageAdapter");
         }
         // Returns the page title for the top indicator
         @Override
         public CharSequence getPageTitle(int position)
         {
+            Log.d(LOG_TAG, "CharSequence");
+
             return getDayName(getActivity(),System.currentTimeMillis()+((position-2)*86400000));
         }
-        public String getDayName(Context context, long dateInMillis) {
+        public String getDayName(Context context, long dateInMillis)
+        {
+            Log.d(LOG_TAG, "getDayName");
+
             // If the date is today, return the localized version of "Today" instead of the actual
             // day name.
 

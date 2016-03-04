@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +27,21 @@ public class scoresAdapter extends CursorAdapter
     public static final int COL_MATCHTIME = 2;
     public double detail_match_id = 0;
     private String FOOTBALL_SCORES_HASHTAG = "#Football_Scores";
+
+    public static String LOG_TAG = "ScoresAdapter";
+
     public scoresAdapter(Context context,Cursor cursor,int flags)
     {
         super(context,cursor,flags);
+
+        Log.d(LOG_TAG, "Constructor");
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent)
     {
+        Log.d(LOG_TAG, "newView");
+
         View mItem = LayoutInflater.from(context).inflate(R.layout.scores_list_item, parent, false);
         ViewHolder mHolder = new ViewHolder(mItem);
         mItem.setTag(mHolder);
@@ -44,6 +52,8 @@ public class scoresAdapter extends CursorAdapter
     @Override
     public void bindView(View view, final Context context, Cursor cursor)
     {
+        Log.d(LOG_TAG, "bindView");
+
         final ViewHolder mHolder = (ViewHolder) view.getTag();
         mHolder.home_name.setText(cursor.getString(COL_HOME));
         mHolder.away_name.setText(cursor.getString(COL_AWAY));
@@ -89,7 +99,10 @@ public class scoresAdapter extends CursorAdapter
         }
 
     }
-    public Intent createShareForecastIntent(String ShareText) {
+    public Intent createShareForecastIntent(String ShareText)
+    {
+        Log.d(LOG_TAG, "createShareForecastIntent");
+
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         shareIntent.setType("text/plain");

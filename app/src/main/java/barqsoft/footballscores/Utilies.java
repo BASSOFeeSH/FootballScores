@@ -1,5 +1,7 @@
 package barqsoft.footballscores;
 
+import android.util.Log;
+
 /**
  * Created by yehya khaled on 3/3/2015.
  */
@@ -10,8 +12,12 @@ public class Utilies
     public static final int CHAMPIONS_LEAGUE = 362;
     public static final int PRIMERA_DIVISION = 358;
     public static final int BUNDESLIGA = 351;
+    public static String LOG_TAG = "Utilities";
+
     public static String getLeague(int league_num)
     {
+        Log.d(LOG_TAG, "getLeague");
+
         switch (league_num)
         {
             case SERIE_A : return "Seria A";
@@ -24,6 +30,8 @@ public class Utilies
     }
     public static String getMatchDay(int match_day,int league_num)
     {
+        Log.d(LOG_TAG, "getMatchDay");
+
         if(league_num == CHAMPIONS_LEAGUE)
         {
             if (match_day <= 6)
@@ -55,6 +63,8 @@ public class Utilies
 
     public static String getScores(int home_goals,int awaygoals)
     {
+        Log.d(LOG_TAG, "getScores");
+
         if(home_goals < 0 || awaygoals < 0)
         {
             return " - ";
@@ -67,6 +77,8 @@ public class Utilies
 
     public static int getTeamCrestByTeamName (String teamname)
     {
+        Log.d(LOG_TAG, "getTeamCrestByTeamName");
+
         if (teamname==null){return R.drawable.no_icon;}
         switch (teamname)
         { //This is the set of icons that are currently in the app. Feel free to find and add more

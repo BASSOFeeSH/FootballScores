@@ -3,6 +3,7 @@ package barqsoft.footballscores;
 import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 /**
  * Created by yehya khaled on 2/25/2015.
@@ -10,6 +11,9 @@ import android.provider.BaseColumns;
 public class DatabaseContract
 {
     public static final String SCORES_TABLE = "scores_table";
+
+    public static String LOG_TAG = "DatabaseContract";
+
     public static final class scores_table implements BaseColumns
     {
         //Table data
@@ -34,14 +38,20 @@ public class DatabaseContract
 
         public static Uri buildScoreWithLeague()
         {
+            Log.d(LOG_TAG, "buildScoreWithLeague");
+
             return BASE_CONTENT_URI.buildUpon().appendPath("league").build();
         }
         public static Uri buildScoreWithId()
         {
+            Log.d(LOG_TAG, "buildScoresWithId");
+
             return BASE_CONTENT_URI.buildUpon().appendPath("id").build();
         }
         public static Uri buildScoreWithDate()
         {
+            Log.d(LOG_TAG, "buildScoreWithDate");
+
             return BASE_CONTENT_URI.buildUpon().appendPath("date").build();
         }
     }

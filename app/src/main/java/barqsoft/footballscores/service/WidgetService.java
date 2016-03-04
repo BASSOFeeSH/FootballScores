@@ -12,7 +12,7 @@ public class WidgetService extends RemoteViewsService
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent)
     {
-        Log.d(LOG_TAG, "Widget Service onGetViewFactory");
+        Log.d(LOG_TAG, "onGetViewFactory");
         return (new ScoreViewsFactory(this.getApplicationContext(),
                                       intent));
     }

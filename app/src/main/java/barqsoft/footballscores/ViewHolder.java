@@ -1,5 +1,6 @@
 package barqsoft.footballscores;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,8 +17,13 @@ public class ViewHolder
     public ImageView home_crest;
     public ImageView away_crest;
     public double match_id;
+
+    public static String LOG_TAG = "ViewHolder";
+
     public ViewHolder(View view)
     {
+        Log.d(LOG_TAG, "Constructor");
+
         home_name = (TextView) view.findViewById(R.id.home_name);
         away_name = (TextView) view.findViewById(R.id.away_name);
         score     = (TextView) view.findViewById(R.id.score_textview);
