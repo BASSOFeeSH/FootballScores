@@ -39,16 +39,10 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string-array name="string_array_test">
-        <item>score1</item>
-        <item>score2</item>
-        <item>score3</item>
-        <item>score4</item>
-        <item>score5</item>
-        <item>score6</item>
-        <item>score7</item>
-        <item>score8</item>
-        <item>score9</item>
-        <item>score10</item>
+        <item>Loading.</item>
+        <item>Loading..</item>
+        <item>Loading...</item>
+        <item>Please wait</item>
     </string-array>
     <string name="widget_day_offset">0</string>
 </resources>

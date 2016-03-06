@@ -19,7 +19,7 @@ import java.util.Date;
 public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
                                           android.content.Loader.OnLoadCompleteListener<Cursor>
 {
-    private static final String[] items={"loading.", "loading..", "loading..."};
+    //private static final String[] items={"loading.", "loading..", "loading..."};
 
     private Context ctxt=null;
     private int appWidgetId;
@@ -114,7 +114,7 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
     public RemoteViews getViewAt(int position)
     {
         Log.d(LOG_TAG, "getViewAt " + position);
-        RemoteViews row = new RemoteViews(ctxt.getPackageName(), R.layout.scores_list_item);
+        RemoteViews row = new RemoteViews(ctxt.getPackageName(), R.layout.widget_list_item);
 //        RemoteViews row = new RemoteViews(ctxt.getPackageName(), R.layout.row);
 
         if (mCursor == null)
@@ -133,21 +133,25 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
         String away_name = mCursor.getString(COL_AWAY);
         String date = mCursor.getString(COL_MATCHTIME);
         String score = Utilies.getScores(mCursor.getInt(COL_HOME_GOALS), mCursor.getInt(COL_AWAY_GOALS));
+
+//        DateFormat df = new SimpleDateFormat("HH:mm:ss");
+//        Date time = new Date();
+//        score = df.format(time);
 //        Double match_id = mCursor.getDouble(COL_ID);
-        int home_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_HOME));
-        int away_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_AWAY));
+//        int home_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_HOME));
+//        int away_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_AWAY));
 
 
         row.setTextViewText(R.id.home_name, home_name);
         row.setTextColor(R.id.home_name, ctxt.getResources().getColor(R.color.black));
         row.setTextViewText(R.id.away_name, away_name);
         row.setTextColor(R.id.away_name, ctxt.getResources().getColor(R.color.black));
-        row.setTextViewText(R.id.data_textview, date);
-        row.setTextColor(R.id.data_textview, ctxt.getResources().getColor(R.color.black));
+//        row.setTextViewText(R.id.data_textview, date);
+//        row.setTextColor(R.id.data_textview, ctxt.getResources().getColor(R.color.black));
         row.setTextViewText(R.id.score_textview, score);
         row.setTextColor(R.id.score_textview, ctxt.getResources().getColor(R.color.black));
-        row.setImageViewResource(R.id.home_crest, home_crest);
-        row.setImageViewResource(R.id.away_crest, away_crest);
+//        row.setImageViewResource(R.id.home_crest, home_crest);
+//        row.setImageViewResource(R.id.away_crest, away_crest);
 
 
         Log.d(LOG_TAG, home_name);Log.d(LOG_TAG, away_name);;Log.d(LOG_TAG, score);

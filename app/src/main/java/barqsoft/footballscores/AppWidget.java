@@ -23,7 +23,8 @@ public class AppWidget extends AppWidgetProvider {
     {
         Log.d(LOG_TAG, "onUpdate");
 
-        for (int i=0; i<appWidgetIds.length; i++) {
+        for (int i=0; i<appWidgetIds.length; i++)
+        {
             Intent svcIntent=new Intent(ctxt, WidgetService.class);
 
             svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
@@ -40,6 +41,7 @@ public class AppWidget extends AppWidgetProvider {
 //            widget.setPendingIntentTemplate(R.id.widget_scores_list, clickPI);
 
             appWidgetManager.updateAppWidget(appWidgetIds[i], widget);
+            appWidgetManager.notifyAppWidgetViewDataChanged(i, R.id.widget_scores_list);
         }
 
         super.onUpdate(ctxt, appWidgetManager, appWidgetIds);
