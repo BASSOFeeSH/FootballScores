@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -81,7 +82,8 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
     {
         Log.d(LOG_TAG, "onDestroy");
 
-        if (mCursor != null && !mCursor.isClosed()) {
+        if (mCursor != null && !mCursor.isClosed())
+        {
             mCursor.close();
             mCursor = null;
         }
@@ -134,9 +136,9 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
         String date = mCursor.getString(COL_MATCHTIME);
         String score = Utilies.getScores(mCursor.getInt(COL_HOME_GOALS), mCursor.getInt(COL_AWAY_GOALS));
 
-//        DateFormat df = new SimpleDateFormat("HH:mm:ss");
-//        Date time = new Date();
-//        score = df.format(time);
+        DateFormat df = new SimpleDateFormat("HH:mm:ss");
+        Date time = new Date();
+        score = df.format(time);
 //        Double match_id = mCursor.getDouble(COL_ID);
 //        int home_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_HOME));
 //        int away_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_AWAY));
@@ -179,7 +181,7 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
     public int getViewTypeCount()
     {
         Log.d(LOG_TAG, "getViewTypeCount");
-        return(2);
+        return(1);
     }
 
     @Override
@@ -200,16 +202,30 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
     public void onDataSetChanged()
     {
         Log.d(LOG_TAG, "onDataSetChanged");
-        if(mCursor != null)
-        {
-            Log.d(LOG_TAG, "..not null");
-            mCursor.requery();
-            Log.d(LOG_TAG, "onDataSetChanged requery");
-        }
-        else
-        {
-            Log.d(LOG_TAG, "onDataSetChanged ..NULL");
-        }
+
+//        Log.d(LOG_TAG, "onDataSetChanged..Close cursor");
+//        if (mCursor != null && !mCursor.isClosed())
+//        {
+//            mCursor.close();
+//            mCursor = null;
+//        }
+//
+//        Log.d(LOG_TAG, "onDataSetChanged..Close loader");
+//        // Stop the cursor loader
+//        if (mCursorLoader != null) {
+//            mCursorLoader.unregisterListener(this);
+//            mCursorLoader.cancelLoad();
+//            mCursorLoader.stopLoading();
+//        }
+//
+//        Log.d(LOG_TAG, "onDataSetChanged..Reset fragment date");
+//        setFragmentDate();
+//
+//        Log.d(LOG_TAG, "onDataSetChanged..Recreate loader");
+//        mCursorLoader = new CursorLoader(ctxt,DatabaseContract.scores_table.buildScoreWithDate(),null,null,fragmentdate,null);
+//        mCursorLoader.registerListener(WIDGET_LISTENER, this);
+//        mCursorLoader.startLoading();
+
     }
 
     @Override

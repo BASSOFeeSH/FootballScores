@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import barqsoft.footballscores.service.WidgetService;
+import barqsoft.footballscores.service.myFetchService;
 
 /**
  * Implementation of App Widget functionality.
@@ -23,8 +24,12 @@ public class AppWidget extends AppWidgetProvider {
     {
         Log.d(LOG_TAG, "onUpdate");
 
+        Intent service_start = new Intent(ctxt, myFetchService.class);
+        ctxt.startService(service_start);
+
         for (int i=0; i<appWidgetIds.length; i++)
         {
+            Log.d(LOG_TAG, "onUpdate.." + i);
             Intent svcIntent=new Intent(ctxt, WidgetService.class);
 
             svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
@@ -41,10 +46,11 @@ public class AppWidget extends AppWidgetProvider {
 //            widget.setPendingIntentTemplate(R.id.widget_scores_list, clickPI);
 
             appWidgetManager.updateAppWidget(appWidgetIds[i], widget);
-            appWidgetManager.notifyAppWidgetViewDataChanged(i, R.id.widget_scores_list);
+//            appWidgetManager.notifyAppWidgetViewDataChanged(i, R.id.widget_scores_list);
         }
 
         super.onUpdate(ctxt, appWidgetManager, appWidgetIds);
+        Log.d(LOG_TAG, "...onUpdate");
     }
 }
 //{
