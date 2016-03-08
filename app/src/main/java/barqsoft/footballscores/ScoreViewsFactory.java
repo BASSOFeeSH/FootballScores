@@ -10,7 +10,6 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -136,9 +135,9 @@ public class ScoreViewsFactory implements RemoteViewsService.RemoteViewsFactory,
         String date = mCursor.getString(COL_MATCHTIME);
         String score = Utilies.getScores(mCursor.getInt(COL_HOME_GOALS), mCursor.getInt(COL_AWAY_GOALS));
 
-        DateFormat df = new SimpleDateFormat("HH:mm:ss");
-        Date time = new Date();
-        score = df.format(time);
+//        DateFormat df = new SimpleDateFormat("HH:mm:ss");
+//        Date time = new Date();
+//        score = df.format(time);
 //        Double match_id = mCursor.getDouble(COL_ID);
 //        int home_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_HOME));
 //        int away_crest = Utilies.getTeamCrestByTeamName(mCursor.getString(COL_AWAY));

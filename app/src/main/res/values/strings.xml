@@ -44,5 +44,5 @@
         <item>Loading...</item>
         <item>Please wait</item>
     </string-array>
-    <string name="widget_day_offset">0</string>
+    <string name="widget_day_offset">-1</string>
 </resources>
